@@ -35,6 +35,7 @@ lvim.lsp.diagnostics.virtual_text = false
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.dap.active = true
 lvim.builtin.dashboard.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.side = "left"
@@ -154,6 +155,15 @@ lvim.plugins = {
         },
       }
     end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("dapui").setup()
+    end,
+    ft = { "python", "rust", "go" },
+    requires = { "mfussenegger/nvim-dap" },
+    disable = not lvim.builtin.dap.active,
   },
 }
 
