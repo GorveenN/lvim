@@ -28,3 +28,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 require("user.plugins").config()
 require("user.remaps").config()
 require("user.autocommands").config()
+
+-- haskell grammar, not sure whether this works
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.haskell = {
+  install_info = {
+    url = "https://github.com/tree-sitter/tree-sitter-haskell.git",
+    files = { "src/parser.c", "src/scanner.cc" },
+  },
+}
