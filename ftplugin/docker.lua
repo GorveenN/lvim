@@ -1,4 +1,4 @@
-lvim.lang.dockerfile.linters = {
+lvim.lang.docker.linters = {
   {
     exe = "hadolint",
     -- args = {},

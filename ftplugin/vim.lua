@@ -4,4 +4,3 @@ lvim.lang.vim.linters = {
     -- args = {},
   },
 }
-
