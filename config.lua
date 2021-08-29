@@ -37,3 +37,6 @@ parser_config.haskell = {
     files = { "src/parser.c", "src/scanner.cc" },
   },
 }
+
+-- Fix for GBrowse
+vim.g.nvim_tree_disable_netrw = false
