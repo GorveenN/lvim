@@ -9,7 +9,7 @@ lvim.colorscheme = "tokyonight"
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.lsp.diagnostics.update_in_insert = false
-lvim.lsp.diagnostics.virtual_text = false
+lvim.lsp.diagnostics.virtual_text = true
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- Builtin plugins setup
