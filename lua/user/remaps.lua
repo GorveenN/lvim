@@ -30,6 +30,8 @@ M.config = function()
   lvim.builtin.which_key.mappings["s"].t = { "<cmd>Rg<cr>", "Text" }
 
   lvim.builtin.which_key.mappings["g"].g = { "<cmd>Git<cr>", "Status" }
+  lvim.builtin.which_key.mappings["g"].f = { "<cmd>diffget //2<cr>", "Get left side" }
+  lvim.builtin.which_key.mappings["g"].h = { "<cmd>diffget //3<cr>", "Get right side" }
 
   lvim.builtin.which_key.mappings["t"] = {
     name = "Trouble",
