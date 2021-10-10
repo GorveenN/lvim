@@ -5,7 +5,6 @@ vim.opt.relativenumber = true
 
 vim.g.tokyonight_style = "night"
 lvim.colorscheme = "tokyonight"
-
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.lsp.diagnostics.update_in_insert = false
@@ -28,15 +27,19 @@ lvim.builtin.treesitter.highlight.enabled = true
 require("user.plugins").config()
 require("user.remaps").config()
 require("user.autocommands").config()
-
--- haskell grammar, not sure whether this works
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.haskell = {
-  install_info = {
-    url = "https://github.com/tree-sitter/tree-sitter-haskell.git",
-    files = { "src/parser.c", "src/scanner.cc" },
-  },
-}
+-- require("user.ftplugin").config()
+require("user.null_ls").config()
 
 -- Fix for GBrowse
-vim.g.nvim_tree_disable_netrw = false
+-- vim.g.nvim_tree_disable_netrw = false
+
+-- lvim.builtin.nvimtree.setup.disable_netrw = 0
+-- lvim.builtin.nvimtree.setup.hijack_netrw = 0
+-- lvim.plugin.nvimtree.disable_netrw = 0
+-- lvim.plugin.nvimtree.hijack_netrw = 0
+
+-- vim.cmd([[
+-- set t_ZH=[3m
+-- set t_ZR=[23m
+-- ]])
+

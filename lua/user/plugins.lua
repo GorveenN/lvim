@@ -60,7 +60,13 @@ M.config = function()
       },
       ft = { "fugitive" },
     },
-    { "shumphrey/fugitive-gitlab.vim", requires = { "tpope/vim-fugitive" } },
+    {
+      "shumphrey/fugitive-gitlab.vim",
+      requires = { "tpope/vim-fugitive" },
+      config = function()
+        vim.g.fugitive_gitlab_domains = { "https://gitlab-master.nvidia.com" }
+      end,
+    },
     { "tpope/vim-rhubarb", requires = { "tpope/vim-fugitive" } },
     {
       "aserowy/tmux.nvim",
@@ -97,6 +103,72 @@ M.config = function()
       "junegunn/fzf.vim",
       requires = "junegunn/fzf",
       -- cmd = { "Files" },
+    },
+
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      event = "InsertEnter",
+      config = function()
+        require("nvim-treesitter.configs").setup {
+          textobjects = {
+            select = {
+              enable = true,
+
+              -- Automatically jump forward to textobj, similar to targets.vim
+              lookahead = true,
+
+              keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+
+                -- Or you can define your own textobjects like this
+                ["iF"] = {
+                  python = "(function_definition) @function",
+                  cpp = "(function_definition) @function",
+                  c = "(function_definition) @function",
+                  java = "(method_declaration) @function",
+                },
+              },
+            },
+          },
+        }
+      end,
+    },
+    {
+      "simrat39/rust-tools.nvim",
+      config = function()
+        require("rust-tools").setup {}
+      end,
+      requires = {
+        "neovim/nvim-lspconfig",
+        "simrat39/rust-tools.nvim",
+        "nvim-lua/popup.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "mfussenegger/nvim-dap",
+        "mattn/webapi-vim",
+      },
+      -- cmd = {
+      --   "RustSetInlayHints",
+      --   "RustDisableInlayHints",
+      --   "RustToggleInlayHints",
+      --   "RustRunnables",
+      --   "RustExpandMacro",
+      --   "RustOpenCargo ",
+      --   "RustParentModule",
+      --   "RustJoinLines",
+      --   "RustHoverActions",
+      --   "RustHoverRange ",
+      --   "RustMoveItemDown",
+      --   "RustMoveItemUp",
+      --   "RustStartStandaloneServerForBuffer ",
+      --   "RustDebuggables",
+      --   "RustViewCrateGraph",
+      --   "RustReloadWorkspace",
+      -- },
     },
   }
 end
