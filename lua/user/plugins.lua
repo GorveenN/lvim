@@ -2,6 +2,8 @@ local M = {}
 
 M.config = function()
   lvim.plugins = {
+    { "tpope/vim-dispatch" },
+    { "rust-lang/rust.vim" },
     { "folke/tokyonight.nvim" },
     {
       "ray-x/lsp_signature.nvim",
