@@ -1,4 +1,3 @@
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 vim.o.timeoutlen = 1000
 vim.opt.relativenumber = true
@@ -8,7 +7,7 @@ lvim.colorscheme = "tokyonight"
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.lsp.diagnostics.update_in_insert = false
-lvim.lsp.diagnostics.virtual_text = true
+lvim.lsp.diagnostics.virtual_text = false
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- Builtin plugins setup
@@ -27,19 +26,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 require("user.plugins").config()
 require("user.remaps").config()
 require("user.autocommands").config()
--- require("user.ftplugin").config()
 require("user.null_ls").config()
 
--- Fix for GBrowse
--- vim.g.nvim_tree_disable_netrw = false
-
--- lvim.builtin.nvimtree.setup.disable_netrw = 0
--- lvim.builtin.nvimtree.setup.hijack_netrw = 0
--- lvim.plugin.nvimtree.disable_netrw = 0
--- lvim.plugin.nvimtree.hijack_netrw = 0
-
--- vim.cmd([[
--- set t_ZH=[3m
--- set t_ZR=[23m
--- ]])
-
+-- varia
+lvim.lsp.automatic_servers_installation = true
+lvim.lang.rust.rust_tools = true

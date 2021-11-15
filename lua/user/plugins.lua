@@ -6,6 +6,28 @@ M.config = function()
     { "rust-lang/rust.vim" },
     { "folke/tokyonight.nvim" },
     {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          -- -- settings without a patched font or icons
+          -- {
+          --     fold_open = "v", -- icon used for open folds
+          --     fold_closed = ">", -- icon used for closed folds
+          --     indent_lines = false, -- add an indent guide below the fold icons
+          --     signs = {
+          --         -- icons / text used for a diagnostic
+          --         error = "error",
+          --         warning = "warn",
+          --         hint = "hint",
+          --         information = "info"
+          --     },
+          --     use_lsp_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+          -- }
+        }
+      end,
+    },
+    {
       "ray-x/lsp_signature.nvim",
       config = function()
         require("lsp_signature").on_attach {
@@ -70,6 +92,12 @@ M.config = function()
       end,
     },
     { "tpope/vim-rhubarb", requires = { "tpope/vim-fugitive" } },
+    {
+      "folke/zen-mode.nvim",
+      config = function()
+        require("zen-mode").setup {}
+      end,
+    },
     {
       "aserowy/tmux.nvim",
       config = function()
@@ -142,35 +170,54 @@ M.config = function()
     {
       "simrat39/rust-tools.nvim",
       config = function()
-        require("rust-tools").setup {}
+        local lsp_installer_servers = require "nvim-lsp-installer.servers"
+        local _, requested_server = lsp_installer_servers.get_server "rust_analyzer"
+        local opts = {
+          tools = { -- rust-tools options
+            autoSetHints = true, -- it doesn't work for some reason
+            hover_with_actions = true,
+            runnables = {
+              use_telescope = true,
+            },
+            inlay_hints = {
+              show_parameter_hints = true,
+              parameter_hints_prefix = "<-",
+              other_hints_prefix = "=>",
+              max_len_align = false,
+              max_len_align_padding = 1,
+              right_align = false,
+              right_align_padding = 7,
+            },
+            hover_actions = {
+              border = {
+                { "╭", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "╮", "FloatBorder" },
+                { "│", "FloatBorder" },
+                { "╯", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "╰", "FloatBorder" },
+                { "│", "FloatBorder" },
+              },
+            },
+          },
+          server = {
+            cmd = requested_server._default_options.cmd,
+            on_attach = require("lvim.lsp").common_on_attach,
+            on_init = require("lvim.lsp").common_on_init,
+          },
+        }
+        require("rust-tools").setup(opts)
       end,
+      ft = { "rust", "rs" },
       requires = {
         "neovim/nvim-lspconfig",
-        "simrat39/rust-tools.nvim",
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
         "mfussenegger/nvim-dap",
         "mattn/webapi-vim",
       },
-      -- cmd = {
-      --   "RustSetInlayHints",
-      --   "RustDisableInlayHints",
-      --   "RustToggleInlayHints",
-      --   "RustRunnables",
-      --   "RustExpandMacro",
-      --   "RustOpenCargo ",
-      --   "RustParentModule",
-      --   "RustJoinLines",
-      --   "RustHoverActions",
-      --   "RustHoverRange ",
-      --   "RustMoveItemDown",
-      --   "RustMoveItemUp",
-      --   "RustStartStandaloneServerForBuffer ",
-      --   "RustDebuggables",
-      --   "RustViewCrateGraph",
-      --   "RustReloadWorkspace",
-      -- },
     },
   }
 end
