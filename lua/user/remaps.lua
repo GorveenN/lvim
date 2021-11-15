@@ -26,8 +26,8 @@ M.config = function()
   --   ":let _s=@/<Bar>:%s/s+$//e<Bar>:let @/=_s<Bar><CR>",
   --   { noremap = true, silent = true }
   -- )
-  lvim.builtin.which_key.mappings["f"] = { "<cmd>Files<cr>", "Files" }
-  lvim.builtin.which_key.mappings["s"].t = { "<cmd>Rg<cr>", "Text" }
+  -- lvim.builtin.which_key.mappings["f"] = { "<cmd>Files<cr>", "Files" }
+  -- lvim.builtin.which_key.mappings["s"].t = { "<cmd>Rg<cr>", "Text" }
 
   lvim.builtin.which_key.mappings["g"].g = { "<cmd>Git<cr>", "Status" }
   lvim.builtin.which_key.mappings["g"].f = { "<cmd>diffget //2<cr>", "Get left side" }
