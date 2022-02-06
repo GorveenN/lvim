@@ -1,3 +1,4 @@
+vim.o.timeoutlen = 1000
 vim.opt.relativenumber = true
 
 vim.g.tokyonight_style = "night"
