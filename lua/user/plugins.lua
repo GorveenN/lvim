@@ -219,6 +219,28 @@ M.config = function()
         "mattn/webapi-vim",
       },
     },
+    { "lervag/vimtex" },
+    -- {
+    --   "tzachar/cmp-tabnine",
+    --   run = "./install.sh",
+    --   requires = "hrsh7th/nvim-cmp",
+    --   event = "InsertEnter",
+    -- },
+    -- {
+    --   "tpope/vim-surround",
+    --   keys = { "c", "d", "y" },
+    -- },
+    {
+      "folke/persistence.nvim",
+      event = "BufReadPre", -- this will only start session saving when an actual file was opened
+      module = "persistence",
+      config = function()
+        require("persistence").setup {
+          dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+          options = { "buffers", "curdir", "tabpages", "winsize" },
+        }
+      end,
+    },
   }
 end
 
