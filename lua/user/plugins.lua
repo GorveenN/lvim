@@ -134,39 +134,6 @@ M.config = function()
       requires = "junegunn/fzf",
       -- cmd = { "Files" },
     },
-
-    {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      event = "InsertEnter",
-      config = function()
-        require("nvim-treesitter.configs").setup {
-          textobjects = {
-            select = {
-              enable = true,
-
-              -- Automatically jump forward to textobj, similar to targets.vim
-              lookahead = true,
-
-              keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-
-                -- Or you can define your own textobjects like this
-                ["iF"] = {
-                  python = "(function_definition) @function",
-                  cpp = "(function_definition) @function",
-                  c = "(function_definition) @function",
-                  java = "(method_declaration) @function",
-                },
-              },
-            },
-          },
-        }
-      end,
-    },
     {
       "simrat39/rust-tools.nvim",
       config = function()
@@ -220,16 +187,6 @@ M.config = function()
       },
     },
     { "lervag/vimtex" },
-    -- {
-    --   "tzachar/cmp-tabnine",
-    --   run = "./install.sh",
-    --   requires = "hrsh7th/nvim-cmp",
-    --   event = "InsertEnter",
-    -- },
-    -- {
-    --   "tpope/vim-surround",
-    --   keys = { "c", "d", "y" },
-    -- },
     {
       "folke/persistence.nvim",
       event = "BufReadPre", -- this will only start session saving when an actual file was opened

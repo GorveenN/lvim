@@ -18,8 +18,8 @@ lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.nvimtree.setup.disable_netrw = false
 
-lvim.builtin.treesitter.ensure_installed = { "rust", "yaml", "python", "cpp", "haskell" }
-lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.ensure_installed = "all"
+lvim.builtin.treesitter.highlight.enabled = true
 
 require("user.plugins").config()
 require("user.remaps").config()
