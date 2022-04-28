@@ -30,6 +30,9 @@ require("user.null_ls").config()
 lvim.lsp.automatic_servers_installation = true
 lvim.lang.rust.rust_tools = true
 
+-- disable completion menu border
+lvim.builtin.cmp.window.completion = {}
+
 vim.cmd [[
   set wrap
 ]]
