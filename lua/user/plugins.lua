@@ -129,11 +129,11 @@ M.config = function()
       requires = { "mfussenegger/nvim-dap" },
       disable = not lvim.builtin.dap.active,
     },
-    {
-      "junegunn/fzf.vim",
-      requires = "junegunn/fzf",
-      -- cmd = { "Files" },
-    },
+    -- {
+    --   "junegunn/fzf.vim",
+    --   requires = "junegunn/fzf",
+    --   -- cmd = { "Files" },
+    -- },
     {
       "simrat39/rust-tools.nvim",
       config = function()
@@ -198,6 +198,8 @@ M.config = function()
         }
       end,
     },
+    { "sainnhe/gruvbox-material" },
+    { "tpope/vim-surround" },
   }
 end
 

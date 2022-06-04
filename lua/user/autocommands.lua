@@ -1,10 +1,16 @@
 local M = {}
 
 M.config = function()
-  lvim.autocommands.custom_groups = {
+  lvim.autocommands = {
     -- { "CursorHold", "*", "lua vim.lsp.diagnostic.show_line_diagnostics()" },
-    { "FileType", "*.rs", "compiler cargo" },
-    { "FileType", "markdown", "setlocal spelllang=pl,en" },
+    {
+      "FileType",
+      { pattern = { "*.rs" }, command = "compiler cargo" },
+    },
+    {
+      "FileType",
+      { pattern = { "markdown" }, command = "setlocal spelllang=pl,en" },
+    },
   }
 end
 
