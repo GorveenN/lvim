@@ -17,7 +17,6 @@ lvim.builtin.dashboard.active = false
 lvim.builtin.project.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.nvimtree.setup.disable_netrw = false
 
 lvim.builtin.treesitter.ensure_installed = "all"
