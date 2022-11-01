@@ -3,7 +3,6 @@ local M = {}
 M.config = function()
   lvim.plugins = {
     { "tpope/vim-dispatch" },
-    { "rust-lang/rust.vim" },
     { "folke/tokyonight.nvim" },
     {
       "folke/trouble.nvim",
@@ -84,20 +83,13 @@ M.config = function()
       },
       ft = { "fugitive" },
     },
-    {
-      "shumphrey/fugitive-gitlab.vim",
-      requires = { "tpope/vim-fugitive" },
-      config = function()
-        vim.g.fugitive_gitlab_domains = { "https://gitlab-master.nvidia.com" }
-      end,
-    },
     { "tpope/vim-rhubarb", requires = { "tpope/vim-fugitive" } },
-    {
-      "folke/zen-mode.nvim",
-      config = function()
-        require("zen-mode").setup {}
-      end,
-    },
+    -- {
+    --   "folke/zen-mode.nvim",
+    --   config = function()
+    --     require("zen-mode").setup {}
+    --   end,
+    -- },
     {
       "aserowy/tmux.nvim",
       config = function()
@@ -120,86 +112,15 @@ M.config = function()
         }
       end,
     },
-    {
-      "rcarriga/nvim-dap-ui",
-      config = function()
-        require("dapui").setup()
-      end,
-      ft = { "python", "rust", "go" },
-      requires = { "mfussenegger/nvim-dap" },
-      disable = not lvim.builtin.dap.active,
-    },
-    -- {
-    --   "junegunn/fzf.vim",
-    --   requires = "junegunn/fzf",
-    --   -- cmd = { "Files" },
-    -- },
-    {
-      "simrat39/rust-tools.nvim",
-      config = function()
-        local lsp_installer_servers = require "nvim-lsp-installer.servers"
-        local _, requested_server = lsp_installer_servers.get_server "rust_analyzer"
-        local opts = {
-          tools = { -- rust-tools options
-            autoSetHints = true, -- it doesn't work for some reason
-            hover_with_actions = true,
-            runnables = {
-              use_telescope = true,
-            },
-            inlay_hints = {
-              show_parameter_hints = true,
-              parameter_hints_prefix = "<-",
-              other_hints_prefix = "=>",
-              max_len_align = false,
-              max_len_align_padding = 1,
-              right_align = false,
-              right_align_padding = 7,
-            },
-            hover_actions = {
-              border = {
-                { "╭", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "╮", "FloatBorder" },
-                { "│", "FloatBorder" },
-                { "╯", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "╰", "FloatBorder" },
-                { "│", "FloatBorder" },
-              },
-            },
-          },
-          server = {
-            cmd = requested_server._default_options.cmd,
-            on_attach = require("lvim.lsp").common_on_attach,
-            on_init = require("lvim.lsp").common_on_init,
-          },
-        }
-        require("rust-tools").setup(opts)
-      end,
-      ft = { "rust", "rs" },
-      requires = {
-        "neovim/nvim-lspconfig",
-        "nvim-lua/popup.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-        "mfussenegger/nvim-dap",
-        "mattn/webapi-vim",
-      },
-    },
     { "lervag/vimtex" },
-    {
-      "folke/persistence.nvim",
-      event = "BufReadPre", -- this will only start session saving when an actual file was opened
-      module = "persistence",
-      config = function()
-        require("persistence").setup {
-          dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
-          options = { "buffers", "curdir", "tabpages", "winsize" },
-        }
-      end,
-    },
     { "sainnhe/gruvbox-material" },
     { "tpope/vim-surround" },
+    {
+      "simrat39/symbols-outline.nvim",
+      config = function()
+        require("symbols-outline").setup()
+      end,
+    },
   }
 end
 
