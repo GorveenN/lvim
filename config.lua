@@ -10,7 +10,7 @@ lvim.lsp.diagnostics.virtual_text = false
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- Builtin plugins setup
 lvim.builtin.dap.active = true
--- lvim.builtin.alpha = false
+-- lvim.builtin.dashboard.active = false
 lvim.builtin.project.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.nvimtree.side = "left"
@@ -38,3 +38,18 @@ vim.cmd [[
   set breakindent
   set breakindentopt=shift:2,min:40,sbr
 ]]
+
+if vim.fn.has "wsl" then
+  vim.g.clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enable = 0,
+  }
+end
